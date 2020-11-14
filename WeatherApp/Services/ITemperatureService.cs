@@ -5,6 +5,6 @@ namespace WeatherApp.ViewModels
 {
     public interface ITemperatureService
     {
-        Task<TemperatureModel> GetTempAsync();
+        public Task<TemperatureModel> GetTempAsync();
     }
 }

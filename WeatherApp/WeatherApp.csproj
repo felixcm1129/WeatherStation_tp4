@@ -14,4 +14,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OpenWeatherAPI\OpenWeatherAPI.csproj" />
+  </ItemGroup>
+
 </Project>

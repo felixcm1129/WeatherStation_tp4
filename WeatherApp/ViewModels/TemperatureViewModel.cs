@@ -33,9 +33,10 @@ namespace WeatherApp.ViewModels
             }
         }
 
-        public TemperatureViewModel()
+        public TemperatureViewModel(ITemperatureService temp)
         {
             GetTempCommand = new DelegateCommand<string>(GetTemp, CanGetTemp);
+            SetTemperatureService(temp);
         }
 
         public bool CanGetTemp(string obj)
@@ -46,8 +47,8 @@ namespace WeatherApp.ViewModels
         public void GetTemp(string obj)
         {
             if (TemperatureService == null) throw new NullReferenceException();
-
-            _ = GetTempAsync();
+            else _ =  GetTempAsync();
+            
         }
 
         private async Task GetTempAsync()

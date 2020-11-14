@@ -7,7 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
-        <Button DockPanel.Dock="Top" Content="Load content TODO"/>
-        <TextBox Text="TODO"/>
+        <Button DockPanel.Dock="Top" Content="Load Temperature" Command="{Binding GetTempCommand}"/>
+        <StackPanel Grid.Row="4" Grid.Column="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Date :"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Temperature in Celsius :"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentTemp.Temperature}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentTemp.DateTime}"/>
+            </Grid>
+        </StackPanel>
     </DockPanel>
 </Window>

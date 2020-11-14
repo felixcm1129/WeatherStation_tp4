@@ -49,23 +49,39 @@ namespace OpenWeatherAPI
         /// <returns></returns>
         public async Task<OpenWeatherOneCallModel> GetOneCallAsync()
         {
-            
-            EndPoint = $"/onecall?";
+            if (ApiHelper.ApiClient == null)
+            {
+                throw new ArgumentException("ApiClient can not be null");
+            }
+            else
+            {
+                ApiHelper.InitializeClient();
+            }
 
-            /// Src : https://stackoverflow.com/a/14517976/503842
-            var uriBuilder = new UriBuilder($"{BaseURL}{EndPoint}");
+            if (ApiKey == null || ApiKey == "")
+            {
+                throw new ArgumentException("ApiKey can not be null or blank");
+            }
+            else
+            {
+                EndPoint = $"/onecall?";
 
-            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-            query["lat"] = Latitude; // Shawinigan
-            query["lon"] = Longitude;
-            query["units"] = "metric";
-            query["appid"] = ApiKey;
+                /// Src : https://stackoverflow.com/a/14517976/503842
+                var uriBuilder = new UriBuilder($"{BaseURL}{EndPoint}");
+
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query["lat"] = Latitude; // Shawinigan
+                query["lon"] = Longitude;
+                query["units"] = "metric";
+                query["appid"] = ApiKey;
 
 
-            uriBuilder.Query = query.ToString();
-            longUrl = uriBuilder.ToString();
+                uriBuilder.Query = query.ToString();
+                longUrl = uriBuilder.ToString();
 
-            return await doOneCall();
+                return await doOneCall();
+            }
+                
         }
 
         /// <summary>
@@ -74,20 +90,36 @@ namespace OpenWeatherAPI
         /// <returns></returns>
         public async Task<OWCurrentWeaterModel> GetCurrentWeatherAsync()
         {
-            EndPoint = $"/weather?";
+            if (ApiHelper.ApiClient == null)
+            {
+                throw new ArgumentException("ApiClient can not be null");
+            }
+            else
+            {
+                ApiHelper.InitializeClient();
+            }
 
-            /// Src : https://stackoverflow.com/a/14517976/503842
-            var uriBuilder = new UriBuilder($"{BaseURL}{EndPoint}");
+            if (ApiKey == null || ApiKey == "")
+            {
+                throw new ArgumentException("ApiKey can not be null or blank");
+            }
+            else
+            {
+                EndPoint = $"/weather?";
 
-            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-            query["q"] = "Shawinigan"; // Shawinigan
-            query["units"] = "metric";
-            query["appid"] = ApiKey;
+                /// Src : https://stackoverflow.com/a/14517976/503842
+                var uriBuilder = new UriBuilder($"{BaseURL}{EndPoint}");
 
-            uriBuilder.Query = query.ToString();
-            longUrl = uriBuilder.ToString();
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query["q"] = "Shawinigan"; // Shawinigan
+                query["units"] = "metric";
+                query["appid"] = ApiKey;
 
-            return await doCurrentWeatherCall();
+                uriBuilder.Query = query.ToString();
+                longUrl = uriBuilder.ToString();
+
+                return await doCurrentWeatherCall();
+            }
         }
 
         private async Task<OpenWeatherOneCallModel> doOneCall()

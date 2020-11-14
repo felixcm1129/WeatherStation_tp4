@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using OpenWeatherAPI;
+using System.Windows;
 using WeatherApp.ViewModels;
 
 namespace WeatherApp
@@ -15,10 +16,11 @@ namespace WeatherApp
             InitializeComponent();
 
             /// TODO : Faire les appels de configuration ici ainsi que l'initialisation
+            ApiHelper.InitializeClient();
+            string config = AppConfiguration.GetValue("OWApiKey");
+            ITemperatureService temp_service = new OpenWeatherService(config);
 
-            var config = AppConfiguration.GetValue("OWApiKey");
-
-            vm = new TemperatureViewModel();
+            vm = new TemperatureViewModel(temp_service);
 
             DataContext = vm;           
         }

@@ -15,11 +15,10 @@ namespace WeatherApp
             {
 
                 initConfig();
-                key = configuration.GetSection("Configuration")["OWApikey"];
+                key = configuration["OWApiKey"];
                 return key;
-
             }
-            key = configuration.GetSection("Configuration")["OWApikey"];
+            key = configuration["OWApiKey"];
             return key;
         }
 
@@ -31,18 +30,6 @@ namespace WeatherApp
                 reloadOnChange: true);
 
             builder.AddUserSecrets<MainWindow>();
-
-            //Environement
-            var devEnvVariable = Environment.GetEnvironmentVariable("NETCORE_ENVIRONMENT");
-
-            var isDevelopment = string.IsNullOrEmpty(devEnvVariable) ||
-                                    devEnvVariable.ToLower() == "development";
-
-            if (isDevelopment)
-            {
-                builder.AddUserSecrets<MainWindow>();
-            }
-
 
             configuration = builder.Build();
 
