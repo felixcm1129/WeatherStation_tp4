@@ -16,6 +16,8 @@ namespace WeatherApp
 
             /// TODO : Faire les appels de configuration ici ainsi que l'initialisation
 
+            var config = AppConfiguration.GetValue("OWApiKey");
+
             vm = new TemperatureViewModel();
 
             DataContext = vm;           
