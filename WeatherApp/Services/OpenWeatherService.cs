@@ -13,7 +13,7 @@ namespace WeatherApp
     {
         public OpenWeatherProcessor owp;
 
-        public TemperatureModel LastTemp;
+        public TemperatureModel LastTemp = new TemperatureModel();
 
         public OpenWeatherService(string apiKey)
         {
@@ -26,9 +26,9 @@ namespace WeatherApp
             var currentWeather = await owp.GetCurrentWeatherAsync();
 
             long DateTemp = currentWeather.DateTime;
-            DateTime birth = new DateTime(1997, 10, 23, 9, 45, 29, DateTimeKind.Utc).AddSeconds(DateTemp).ToLocalTime();
+            DateTime temp = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(DateTemp).ToLocalTime();
 
-            LastTemp.DateTime = birth;
+            LastTemp.DateTime = temp;
             LastTemp.Temperature = currentWeather.Main.Temperature;
 
             return LastTemp;

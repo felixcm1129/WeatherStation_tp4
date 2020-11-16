@@ -8,24 +8,6 @@
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
         <Button DockPanel.Dock="Top" Content="Load Content" Command="{Binding GetTempCommand}"/>
-        <Grid Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Date Time"/>
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="Temperature"/>
-
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding DateTime}"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Temperature}"/>
-        </Grid>
+        <TextBlock Text="{Binding RawText}"/>
     </DockPanel>
 </Window>

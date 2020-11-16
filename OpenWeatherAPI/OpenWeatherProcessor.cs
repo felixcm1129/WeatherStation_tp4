@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -51,7 +52,7 @@ namespace OpenWeatherAPI
         {
             if (ApiKey == null || ApiKey == "")
             {
-                throw new ArgumentException("ApiKey est null");
+                throw new ArgumentException("ApiKey est vide ou null");
             }
             else
             {
@@ -83,10 +84,12 @@ namespace OpenWeatherAPI
         {
             if (ApiKey == null || ApiKey == "")
             {
-                throw new ArgumentException("ApiKey est null");
+                Debug.WriteLine(" if GetCurrentWeatherAsync");
+                throw new ArgumentException("ApiKey est vide ou null");
             }
             else
             {
+                Debug.WriteLine(" else GetCurrentWeatherAsync");
                 EndPoint = $"/weather?";
 
                 /// Src : https://stackoverflow.com/a/14517976/503842
@@ -109,6 +112,10 @@ namespace OpenWeatherAPI
 
             using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(longUrl))
             {
+                if(response == null)
+                {
+                    throw new ArgumentException("Le client http n'a pas été initialisé");
+                }
                 if (response.IsSuccessStatusCode)
                 {
                     OpenWeatherOneCallModel result = await response.Content.ReadAsAsync<OpenWeatherOneCallModel>();
@@ -123,6 +130,10 @@ namespace OpenWeatherAPI
         {            
             using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(longUrl))
             {
+                if (response == null)
+                {
+                    throw new ArgumentException("Le client http n'a pas été initialisé");
+                }
                 if (response.IsSuccessStatusCode)
                 {
                     OWCurrentWeaterModel result = await response.Content.ReadAsAsync<OWCurrentWeaterModel>();

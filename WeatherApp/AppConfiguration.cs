@@ -13,7 +13,6 @@ namespace WeatherApp
         {
             if (configuration == null)
             {
-
                 initConfig();
             }
             return configuration[key];
@@ -22,9 +21,7 @@ namespace WeatherApp
         private static void initConfig()
         {
             var builder = new ConfigurationBuilder();
-            builder.AddJsonFile("appsettings.json",
-                optional: true,
-                reloadOnChange: true);
+            builder.AddJsonFile("appsettings.json", true, true);
 
             builder.AddUserSecrets<MainWindow>();
 
