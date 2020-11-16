@@ -7,27 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
-        <Button DockPanel.Dock="Top" Content="Load Temperature" Command="{Binding GetTempCommand}"/>
-        <StackPanel Grid.Row="4" Grid.Column="2">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+        <Button DockPanel.Dock="Top" Content="Load Content" Command="{Binding GetTempCommand}"/>
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Date :"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Temperature in Celsius :"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentTemp.Temperature}"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentTemp.DateTime}"/>
-            </Grid>
-        </StackPanel>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Date Time"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="Temperature"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding DateTime}"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Temperature}"/>
+        </Grid>
     </DockPanel>
 </Window>

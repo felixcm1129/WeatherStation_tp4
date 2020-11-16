@@ -23,29 +23,15 @@ namespace WeatherApp
 
         public async Task<TemperatureModel> GetTempAsync()
         {
-            try
-            {
-                var currentweather = await owp.GetCurrentWeatherAsync();
-                TemperatureModel temp = new TemperatureModel();
+            var currentWeather = await owp.GetCurrentWeatherAsync();
 
-                DateTime birth = new DateTime(1997, 10, 23, 9, 45, 29, DateTimeKind.Utc);
-                temp.DateTime = birth.AddSeconds(currentweather.DateTime).ToLocalTime();
+            long DateTemp = currentWeather.DateTime;
+            DateTime birth = new DateTime(1997, 10, 23, 9, 45, 29, DateTimeKind.Utc).AddSeconds(DateTemp).ToLocalTime();
 
-                temp.Temperature = currentweather.Main.Temperature;
-                TemperatureConverter.FahrenheitInCelsius(temp.Temperature);
-                temp.Temperature = Math.Round(temp.Temperature, 0);
+            LastTemp.DateTime = birth;
+            LastTemp.Temperature = currentWeather.Main.Temperature;
 
-                LastTemp = temp;
-
-                return temp;
-            }
-            catch (Exception exception)
-            {
-
-                Console.WriteLine(exception.Message);
-            }
-
-            return null;
+            return LastTemp;
         }
     }
 }

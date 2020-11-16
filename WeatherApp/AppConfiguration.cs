@@ -15,11 +15,8 @@ namespace WeatherApp
             {
 
                 initConfig();
-                key = configuration["OWApiKey"];
-                return key;
             }
-            key = configuration["OWApiKey"];
-            return key;
+            return configuration[key];
         }
 
         private static void initConfig()

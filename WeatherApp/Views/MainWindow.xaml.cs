@@ -17,8 +17,8 @@ namespace WeatherApp
 
             /// TODO : Faire les appels de configuration ici ainsi que l'initialisation
             ApiHelper.InitializeClient();
-            string config = AppConfiguration.GetValue("OWApiKey");
-            ITemperatureService temp_service = new OpenWeatherService(config);
+            string OWApiKey = AppConfiguration.GetValue("OWApiKey");
+            ITemperatureService temp_service = new OpenWeatherService(OWApiKey);
 
             vm = new TemperatureViewModel(temp_service);
 

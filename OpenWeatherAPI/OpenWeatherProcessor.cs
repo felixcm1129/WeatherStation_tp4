@@ -49,18 +49,9 @@ namespace OpenWeatherAPI
         /// <returns></returns>
         public async Task<OpenWeatherOneCallModel> GetOneCallAsync()
         {
-            if (ApiHelper.ApiClient == null)
-            {
-                throw new ArgumentException("ApiClient can not be null");
-            }
-            else
-            {
-                ApiHelper.InitializeClient();
-            }
-
             if (ApiKey == null || ApiKey == "")
             {
-                throw new ArgumentException("ApiKey can not be null or blank");
+                throw new ArgumentException("ApiKey est null");
             }
             else
             {
@@ -90,18 +81,9 @@ namespace OpenWeatherAPI
         /// <returns></returns>
         public async Task<OWCurrentWeaterModel> GetCurrentWeatherAsync()
         {
-            if (ApiHelper.ApiClient == null)
-            {
-                throw new ArgumentException("ApiClient can not be null");
-            }
-            else
-            {
-                ApiHelper.InitializeClient();
-            }
-
             if (ApiKey == null || ApiKey == "")
             {
-                throw new ArgumentException("ApiKey can not be null or blank");
+                throw new ArgumentException("ApiKey est null");
             }
             else
             {
